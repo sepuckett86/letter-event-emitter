@@ -14,7 +14,7 @@ class LetterEmitter extends EventEmitter {
       });
       if(this.arr) {
         if(this.arr.includes(letter)) {
-          this.emit('alert', letter + ' found');
+          this.emit(letter, letter + ' found');
         }
       }
     });

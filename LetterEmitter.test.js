@@ -42,8 +42,12 @@ describe('Letter Emitter', () => {
         mockCallback();
       });
     });
-    expect(mockCallback.mock.calls.length).toBe(3);
-    newLetterEmitter.once('end', done);
+
+    newLetterEmitter.once('end', () => {
+      expect(mockCallback.mock.calls.length).toBe(4);
+      done();
+    });
+
     newLetterEmitter.read(str);
   });
 });
