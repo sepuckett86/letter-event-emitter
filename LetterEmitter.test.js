@@ -13,6 +13,9 @@ describe('Letter Emitter', () => {
         letter: expect.any(String),
         offset: expect.any(Number),
       }));
+      expect(str).toContain(data.letter);
+      expect(data.offset).toBeLessThan(str.length);
+      expect(data.offset).toBeGreaterThanOrEqual(0);
     });
     letterEmitter.once('end', done);
     letterEmitter.read(str);
