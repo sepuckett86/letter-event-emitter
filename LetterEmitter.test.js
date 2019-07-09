@@ -31,12 +31,18 @@ describe('Letter Emitter', () => {
     letterEmitter.read(str);
   });
 
-  it('accepts array in instantiation and emits aert action when letters in array match', done => {
+  it('accepts array in instantiation and emits unique action when letters in array match', done => {
     const str = 'hello there';
-    const newLetterEmitter = new LetterEmitter(['h', 'l']);
-    newLetterEmitter.on('alert', (data) => {
-      expect(data).toContain('found');
+    const arr = ['h', 'l'];
+    const newLetterEmitter = new LetterEmitter(arr);
+    const mockCallback = jest.fn();
+    arr.forEach(letter => {
+      newLetterEmitter.on(letter, (data) => {
+        expect(data).toContain(`${letter} found`);
+        mockCallback();
+      });
     });
+    expect(mockCallback.mock.calls.length).toBe(3);
     newLetterEmitter.once('end', done);
     newLetterEmitter.read(str);
   });
