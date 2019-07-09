@@ -30,5 +30,15 @@ describe('Letter Emitter', () => {
     });
     letterEmitter.read(str);
   });
+
+  it('accepts array in instantiation and emits aert action when letters in array match', done => {
+    const str = 'hello there';
+    const newLetterEmitter = new LetterEmitter(['h', 'l']);
+    newLetterEmitter.on('alert', (data) => {
+      expect(data).toContain('found');
+    });
+    newLetterEmitter.once('end', done);
+    newLetterEmitter.read(str);
+  });
 });
 
