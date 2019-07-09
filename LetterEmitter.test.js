@@ -4,7 +4,7 @@ describe('Letter Emitter', () => {
   it('emits an event for each letter in a string upon call of read method', done => {
     const letterEmitter = new LetterEmitter();
     const str = 'hello there';
-    letterEmitter.on('event', letter => {
+    letterEmitter.on('item', letter => {
       expect(str).toContain(letter);
     });
     letterEmitter.on('end', done);
