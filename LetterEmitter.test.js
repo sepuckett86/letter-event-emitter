@@ -1,11 +1,13 @@
 const LetterEmitter = require('./LetterEmitter');
 
 describe('Letter Emitter', () => {
-  it('does something', () => {
+  it('emits an event for each letter in a string upon call of read method', () => {
     const letterEmitter = new LetterEmitter();
-    letterEmitter.on('event', data => {
-      expect(data).toExist();
+    const str = 'hello there';
+    letterEmitter.on('event', letter => {
+      expect(str).toContain(letter);
     });
+    letterEmitter.read(str);
   });
 });
 
