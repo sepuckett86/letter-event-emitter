@@ -14,7 +14,7 @@ describe('Letter Emitter', () => {
         offset: expect.any(Number),
       }));
     });
-    letterEmitter.on('end', done);
+    letterEmitter.once('end', done);
     letterEmitter.read(str);
   });
 
@@ -24,7 +24,7 @@ describe('Letter Emitter', () => {
     letterEmitter.on('item', () => {
       mockCallback();
     });
-    letterEmitter.on('end', () => {
+    letterEmitter.once('end', () => {
       expect(mockCallback.mock.calls.length).toBe(str.length);
       done();
     });
