@@ -28,7 +28,7 @@ describe('Letter Emitter', () => {
       mockCallback();
     });
     letterEmitter.once('end', () => {
-      expect(mockCallback.mock.calls.length).toBe(str.length);
+      expect(mockCallback).toHaveBeenCalledTimes(str.length);
       done();
     });
     letterEmitter.read(str);
@@ -47,7 +47,7 @@ describe('Letter Emitter', () => {
     });
 
     newLetterEmitter.once('end', () => {
-      expect(mockCallback.mock.calls.length).toBe(4);
+      expect(mockCallback).toHaveBeenCalledTimes(4);
       done();
     });
 
